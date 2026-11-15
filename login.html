@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+  </head>
+  <body>
+    <style>
+      * { box-sizing: border-box; }
+
+      body {
+        background-image: url(https://t4.ftcdn.net/jpg/02/79/60/33/360_F_279603373_RiBssQagZD9dIY4EPTdwjNcd8zDSSRtj.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: 'Segoe UI', sans-serif;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .welcome {
+        color: #e8f5e9;
+        font-size: 28px;
+        font-weight: 600;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+        margin-bottom: -7px;
+      }
+
+      .form-wrapper {
+        
+        position: relative;
+        width: 320px;
+        margin-bottom: 29px;
+        height: 500px;
+        border-radius: 20px;
+        overflow: hidden;
+        backdrop-filter: blur(12px);
+        background-size: 20px;
+        background: transparent;
+        background-image: linear-gradient(30deg, rgba(20, 50, 30, 0.75),black);
+        border: 1px solid rgba(76, 175, 80, 0.3);
+      
+      }
+
+      .form-panel {
+        position:absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 32px 28px;
+        transition: transform 0.5s ease, opacity 0.5s ease;
+      }
+
+      .form-panel.hidden {
+        
+        transform: translateX(100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .form-panel.hidden-left {
+        transform: translateX(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .form-title {
+        color: #a5d6a7;
+        font-size: 17px;
+        font-weight: 600;
+        text-align: center;
+        margin: 0 0 4px;
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .field label {
+        color: #c8e6c9;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .field input {
+        padding: 10px 14px;
+        border: 1px solid rgba(76, 175, 80, 0.4);
+        border-radius: 8px;
+        background: rgba(255,255,255,0.08);
+        color: #e8f5e9;
+        font-size: 15px;
+        outline: none;
+        transition: border-color 0.3s;
+      }
+
+      .field input:focus {
+        border-color: #66bb6a;
+        background: rgba(255,255,255,0.12);
+      }
+
+      .field input::placeholder {
+        color: rgba(200, 230, 201, 0.5);
+      }
+
+      .btn {
+        margin-top: 8px;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #2e7d32, #4caf50);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s;
+      }
+
+      .btn:hover {
+        background: linear-gradient(135deg, #388e3c, #66bb6a);
+        transform: translateY(-1px);
+      }
+
+      .toggle-btn {
+        margin-top: 12px;
+        text-align: center;
+        color: #a5d6a7;
+        font-size: 14px;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+
+      .toggle-btn:hover {
+        color: #e8f5e9;
+      }
+    </style>
+<!-- form that changes the login and signup from right to left while using css i will have to use the @media frame ..lun dev used that my mentor so am going to use javascript classlist add and remove -->
+    <div class="container">
+      <p class="welcome">Welcome</p>
+
+      <div class="form-wrapper">
+
+        <!-- LOGIN -->
+        <div class="form-panel" id="login-panel">
+          <h2 class="form-title">Login</h2>
+
+          <div class="field">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" placeholder="you@example.com" />
+          </div>
+
+          <div class="field">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" placeholder="••••••••" />
+          </div>
+
+          <button class="btn" type="submit">Login</button>
+
+          <p class="toggle-btn" onclick="showPanel('signup')">Don't have an account? <strong>Sign up</strong></p>
+        </div>
+
+        <!-- SIGNUP -->
+        <div class="form-panel hidden" id="signup-panel">
+          <h2 class="form-title">Sign Up</h2>
+
+          <div class="field">
+            <label for="signup-name">Name</label>
+            <input type="text" id="signup-name" placeholder="Full name" />
+          </div>
+
+          <div class="field">
+            <label for="signup-email">Email</label>
+            <input type="email" id="signup-email" placeholder="you@example.com" />
+          </div>
+
+          <div class="field">
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password" placeholder="••••••••" />
+          </div>
+
+          <div class="field">
+            <label for="signup-confirm">Confirm Password</label>
+            <input type="password" id="signup-confirm" placeholder="••••••••" />
+          </div>
+
+          <button class="btn" type="submit">Sign Up</button>
+
+          <p class="toggle-btn" onclick="showPanel('login')">Already have an account? <strong>Login</strong></p>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+      function showPanel(which) {
+        const login = document.getElementById('login-panel');
+        const signup = document.getElementById('signup-panel');
+
+        if (which === 'signup') {
+          login.classList.add('hidden-left');
+          signup.classList.remove('hidden');
+        } else {
+          signup.classList.add('hidden');
+          login.classList.remove('hidden-left');
+        }
+      }
+    </script>
+  </body>
+</html>   
